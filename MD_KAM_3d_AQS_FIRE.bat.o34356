@@ -1,0 +1,467 @@
+L=14.938 M=4
+cell update -0.261032,0.016843,0.364168,imax=632
+cell update -0.428683,-0.124858,0.033426,imax=88
+cell update 0.389674,-0.108891,-0.190566,imax=1384
+cell update 0.297436,0.012046,-0.334397,imax=2913
+cell update -0.180379,-0.391639,-0.125950,imax=1416
+cell update 0.028368,-0.438838,-0.083840,imax=208
+cell update 0.312236,-0.072286,-0.314902,imax=1158
+cell update 0.097641,0.113635,0.421537,imax=316
+cell update 0.204632,0.050976,0.394454,imax=590
+cell update 0.208283,-0.372196,0.137294,imax=840
+cell update 0.268840,0.162799,0.318156,imax=288
+cell update -0.235035,0.092732,-0.369275,imax=1220
+cell update -0.404778,0.042293,-0.187796,imax=180
+cell update -0.401115,0.159325,-0.117335,imax=1063
+cell update 0.161099,-0.410453,0.075646,imax=1712
+gamma=0	Iteration times =28970
+txy0=-0.699779
+gamma=0.001	Iteration times =2469
+gamma =0.001
+gamma=0.002	Iteration times =2240
+gamma =0.002
+gamma=0.003	Iteration times =2331
+gamma =0.003
+gamma=0.004	Iteration times =2387
+gamma =0.004
+gamma=0.005	Iteration times =3293
+gamma =0.005
+cell update 0.413404,-0.009876,-0.171162,imax=2189
+cell update -0.159038,0.307551,-0.283076,imax=812
+cell update 0.388950,0.047107,0.215834,imax=992
+gamma=0.006	Iteration times =12348
+gamma =0.006
+gamma=0.007	Iteration times =2979
+gamma =0.007
+gamma=0.008	Iteration times =2482
+gamma =0.008
+gamma=0.009	Iteration times =2950
+gamma =0.009
+gamma=0.01	Iteration times =3043
+gamma =0.01
+gamma=0.011	Iteration times =1542
+gamma =0.011
+gamma=0.012	Iteration times =2238
+gamma =0.012
+gamma=0.013	Iteration times =2346
+gamma =0.013
+gamma=0.014	Iteration times =2538
+gamma =0.014
+gamma=0.015	Iteration times =2368
+gamma =0.015
+gamma=0.016	Iteration times =2381
+gamma =0.016
+gamma=0.017	Iteration times =8536
+gamma =0.017
+gamma=0.018	Iteration times =1950
+gamma =0.018
+gamma=0.019	Iteration times =1858
+gamma =0.019
+gamma=0.02	Iteration times =2084
+gamma =0.02
+gamma=0.021	Iteration times =2443
+gamma =0.021
+cell update -0.106052,0.002887,-0.436083,imax=750
+gamma=0.022	Iteration times =14008
+gamma =0.022
+gamma=0.023	Iteration times =2078
+gamma =0.023
+gamma=0.024	Iteration times =2670
+gamma =0.024
+gamma=0.025	Iteration times =5425
+gamma =0.025
+gamma=0.026	Iteration times =1883
+gamma =0.026
+gamma=0.027	Iteration times =1915
+gamma =0.027
+gamma=0.028	Iteration times =2636
+gamma =0.028
+gamma=0.029	Iteration times =7946
+gamma =0.029
+gamma=0.03	Iteration times =4890
+gamma =0.03
+gamma=0.031	Iteration times =7744
+gamma =0.031
+gamma=0.032	Iteration times =2845
+gamma =0.032
+gamma=0.033	Iteration times =2569
+gamma =0.033
+gamma=0.034	Iteration times =3546
+gamma =0.034
+gamma=0.035	Iteration times =2107
+gamma =0.035
+gamma=0.036	Iteration times =2223
+gamma =0.036
+gamma=0.037	Iteration times =2902
+gamma =0.037
+cell update -0.334048,-0.066320,-0.290780,imax=652
+gamma=0.038	Iteration times =12414
+gamma =0.038
+gamma=0.039	Iteration times =5389
+gamma =0.039
+gamma=0.04	Iteration times =2711
+gamma =0.04
+cell update -0.429302,0.060212,-0.111814,imax=1504
+cell update -0.376303,-0.189209,-0.154387,imax=1208
+gamma=0.041	Iteration times =7464
+gamma =0.041
+gamma=0.042	Iteration times =1743
+gamma =0.042
+gamma=0.043	Iteration times =1538
+gamma =0.043
+gamma=0.044	Iteration times =1801
+gamma =0.044
+gamma=0.045	Iteration times =1817
+gamma =0.045
+gamma=0.046	Iteration times =2057
+gamma =0.046
+gamma=0.047	Iteration times =3087
+gamma =0.047
+gamma=0.048	Iteration times =1430
+gamma =0.048
+gamma=0.049	Iteration times =1550
+gamma =0.049
+gamma=0.05	Iteration times =4023
+gamma =0.05
+gamma=0.051	Iteration times =1890
+gamma =0.051
+gamma=0.052	Iteration times =2153
+gamma =0.052
+gamma=0.053	Iteration times =2398
+gamma =0.053
+gamma=0.054	Iteration times =2523
+gamma =0.054
+gamma=0.055	Iteration times =4075
+gamma =0.055
+gamma=0.056	Iteration times =2371
+gamma =0.056
+cell update -0.254446,0.364750,-0.052953,imax=2972
+cell update 0.238644,-0.318954,-0.203365,imax=1460
+cell update -0.296985,-0.166018,0.292662,imax=218
+cell update -0.012209,-0.051870,-0.445421,imax=572
+cell update -0.393819,0.176073,0.119910,imax=1178
+cell update -0.330105,0.286115,0.100328,imax=520
+gamma=0.057	Iteration times =17035
+gamma =0.057
+gamma=0.058	Iteration times =1648
+gamma =0.058
+gamma=0.059	Iteration times =1652
+gamma =0.059
+gamma=0.06	Iteration times =2072
+gamma =0.06
+gamma=0.061	Iteration times =4156
+gamma =0.061
+gamma=0.062	Iteration times =1939
+gamma =0.062
+gamma=0.063	Iteration times =2124
+gamma =0.063
+gamma=0.064	Iteration times =2213
+gamma =0.064
+cell update -0.378508,0.238813,0.015650,imax=588
+cell update 0.171884,-0.224068,-0.346776,imax=698
+gamma=0.065	Iteration times =8608
+gamma =0.065
+gamma=0.066	Iteration times =5265
+gamma =0.066
+gamma=0.067	Iteration times =2604
+gamma =0.067
+cell update -0.123504,-0.333668,0.271442,imax=2293
+gamma=0.068	Iteration times =6769
+gamma =0.068
+gamma=0.069	Iteration times =2095
+gamma =0.069
+gamma=0.07	Iteration times =2967
+gamma =0.07
+gamma=0.071	Iteration times =2041
+gamma =0.071
+cell update 0.301751,-0.182330,0.275356,imax=2906
+cell update 0.116166,0.316867,-0.293733,imax=958
+cell update 0.367186,-0.245392,-0.078235,imax=667
+cell update -0.173329,-0.412037,-0.017676,imax=833
+gamma=0.072	Iteration times =21647
+gamma =0.072
+cell update -0.142338,-0.424079,-0.016815,imax=698
+cell update -0.151008,-0.338321,0.251353,imax=44
+gamma=0.073	Iteration times =18028
+gamma =0.073
+gamma=0.074	Iteration times =1945
+gamma =0.074
+gamma=0.075	Iteration times =2502
+gamma =0.075
+gamma=0.076	Iteration times =3127
+gamma =0.076
+gamma=0.077	Iteration times =3308
+gamma =0.077
+gamma=0.078	Iteration times =2151
+gamma =0.078
+gamma=0.079	Iteration times =1728
+gamma =0.079
+cell update -0.152704,-0.133481,-0.398703,imax=1086
+gamma=0.08	Iteration times =6978
+gamma =0.08
+gamma=0.081	Iteration times =1841
+gamma =0.081
+gamma=0.082	Iteration times =1412
+gamma =0.082
+gamma=0.083	Iteration times =2112
+gamma =0.083
+gamma=0.084	Iteration times =2788
+gamma =0.084
+gamma=0.085	Iteration times =6706
+gamma =0.085
+gamma=0.086	Iteration times =3280
+gamma =0.086
+gamma=0.087	Iteration times =9053
+gamma =0.087
+gamma=0.088	Iteration times =3663
+gamma =0.088
+gamma=0.089	Iteration times =4752
+gamma =0.089
+gamma=0.09	Iteration times =2585
+gamma =0.09
+gamma=0.091	Iteration times =2582
+gamma =0.091
+gamma=0.092	Iteration times =2690
+gamma =0.092
+cell update 0.255101,0.363890,-0.051438,imax=696
+gamma=0.093	Iteration times =6096
+gamma =0.093
+gamma=0.094	Iteration times =4346
+gamma =0.094
+gamma=0.095	Iteration times =2936
+gamma =0.095
+gamma=0.096	Iteration times =9473
+gamma =0.096
+gamma=0.097	Iteration times =2571
+gamma =0.097
+gamma=0.098	Iteration times =2734
+gamma =0.098
+cell update -0.016233,-0.255055,0.367502,imax=240
+cell update -0.004297,0.392000,0.216383,imax=3652
+gamma=0.099	Iteration times =8838
+gamma =0.099
+gamma=0.1	Iteration times =3452
+gamma =0.1
+gamma=0.101	Iteration times =1819
+gamma =0.101
+gamma=0.102	Iteration times =2038
+gamma =0.102
+gamma=0.103	Iteration times =3673
+gamma =0.103
+gamma=0.104	Iteration times =2243
+gamma =0.104
+gamma=0.105	Iteration times =2780
+gamma =0.105
+gamma=0.106	Iteration times =1852
+gamma =0.106
+gamma=0.107	Iteration times =3465
+gamma =0.107
+gamma=0.108	Iteration times =2697
+gamma =0.108
+gamma=0.109	Iteration times =5136
+gamma =0.109
+gamma=0.11	Iteration times =2552
+gamma =0.11
+gamma=0.111	Iteration times =2290
+gamma =0.111
+gamma=0.112	Iteration times =2388
+gamma =0.112
+gamma=0.113	Iteration times =2437
+gamma =0.113
+gamma=0.114	Iteration times =1558
+gamma =0.114
+gamma=0.115	Iteration times =1987
+gamma =0.115
+cell update 0.373508,0.201900,-0.141084,imax=1598
+cell update -0.313427,-0.227466,0.223804,imax=505
+gamma=0.116	Iteration times =10858
+gamma =0.116
+gamma=0.117	Iteration times =2418
+gamma =0.117
+gamma=0.118	Iteration times =2963
+gamma =0.118
+cell update 0.226157,-0.189391,0.336442,imax=2450
+cell update -0.045647,0.088956,0.436042,imax=4
+gamma=0.119	Iteration times =16051
+gamma =0.119
+gamma=0.12	Iteration times =5917
+gamma =0.12
+gamma=0.121	Iteration times =2756
+gamma =0.121
+gamma=0.122	Iteration times =2275
+gamma =0.122
+gamma=0.123	Iteration times =2567
+gamma =0.123
+gamma=0.124	Iteration times =2192
+gamma =0.124
+gamma=0.125	Iteration times =2107
+gamma =0.125
+gamma=0.126	Iteration times =2224
+gamma =0.126
+cell update 0.343456,-0.281222,-0.062625,imax=1452
+gamma=0.127	Iteration times =4635
+gamma =0.127
+cell update 0.186346,0.134082,0.384104,imax=3682
+cell update 0.150370,0.092789,0.412467,imax=1250
+cell update 0.044799,0.399641,-0.196152,imax=1035
+cell update -0.117267,0.303474,-0.307256,imax=3716
+cell update 0.147010,-0.327601,-0.266952,imax=2196
+cell update 0.428060,0.044273,0.122283,imax=1536
+gamma=0.128	Iteration times =11588
+gamma =0.128
+gamma=0.129	Iteration times =2352
+gamma =0.129
+gamma=0.13	Iteration times =2399
+gamma =0.13
+gamma=0.131	Iteration times =4161
+gamma =0.131
+gamma=0.132	Iteration times =4561
+gamma =0.132
+gamma=0.133	Iteration times =2091
+gamma =0.133
+gamma=0.134	Iteration times =2205
+gamma =0.134
+cell update -0.374577,0.008025,0.244494,imax=387
+cell update -0.315081,-0.189199,-0.255088,imax=1316
+cell update -0.211354,0.109586,-0.378761,imax=198
+cell update -0.272578,-0.349235,-0.061175,imax=114
+cell update 0.405904,-0.138881,0.129786,imax=500
+cell update -0.361472,-0.092099,0.247067,imax=2427
+cell update 0.383537,-0.156188,0.168846,imax=1063
+gamma=0.135	Iteration times =26951
+gamma =0.135
+gamma=0.136	Iteration times =3735
+gamma =0.136
+gamma=0.137	Iteration times =1844
+gamma =0.137
+gamma=0.138	Iteration times =1749
+gamma =0.138
+gamma=0.139	Iteration times =1798
+gamma =0.139
+gamma=0.14	Iteration times =1919
+gamma =0.14
+gamma=0.141	Iteration times =1869
+gamma =0.141
+gamma=0.142	Iteration times =1997
+gamma =0.142
+gamma=0.143	Iteration times =2325
+gamma =0.143
+gamma=0.144	Iteration times =2274
+gamma =0.144
+gamma=0.145	Iteration times =3718
+gamma =0.145
+gamma=0.146	Iteration times =2027
+gamma =0.146
+gamma=0.147	Iteration times =1596
+gamma =0.147
+gamma=0.148	Iteration times =2811
+gamma =0.148
+gamma=0.149	Iteration times =2339
+gamma =0.149
+gamma=0.15	Iteration times =3404
+gamma =0.15
+gamma=0.151	Iteration times =3864
+gamma =0.151
+gamma=0.152	Iteration times =1932
+gamma =0.152
+gamma=0.153	Iteration times =2010
+gamma =0.153
+cell update -0.185158,0.326671,-0.244751,imax=718
+cell update 0.123376,-0.004529,0.431140,imax=1518
+cell update -0.385196,-0.057290,-0.221415,imax=1392
+cell update 0.424774,-0.126440,0.064884,imax=642
+gamma=0.154	Iteration times =11642
+gamma =0.154
+gamma=0.155	Iteration times =2593
+gamma =0.155
+cell update -0.134761,-0.029558,-0.425796,imax=1651
+cell update -0.333677,0.091956,0.283711,imax=48
+gamma=0.156	Iteration times =7797
+gamma =0.156
+gamma=0.157	Iteration times =1852
+gamma =0.157
+gamma=0.158	Iteration times =2402
+gamma =0.158
+gamma=0.159	Iteration times =10532
+gamma =0.159
+gamma=0.16	Iteration times =3017
+gamma =0.16
+gamma=0.161	Iteration times =3471
+gamma =0.161
+gamma=0.162	Iteration times =2288
+gamma =0.162
+gamma=0.163	Iteration times =2231
+gamma =0.163
+gamma=0.164	Iteration times =1817
+gamma =0.164
+gamma=0.165	Iteration times =2910
+gamma =0.165
+gamma=0.166	Iteration times =2127
+gamma =0.166
+gamma=0.167	Iteration times =2246
+gamma =0.167
+cell update 0.002634,0.125293,-0.429456,imax=2013
+cell update 0.389653,-0.194445,-0.101845,imax=1414
+cell update 0.393318,-0.184650,0.107972,imax=662
+gamma=0.168	Iteration times =9319
+gamma =0.168
+gamma=0.169	Iteration times =5077
+gamma =0.169
+gamma=0.17	Iteration times =2273
+gamma =0.17
+gamma=0.171	Iteration times =4636
+gamma =0.171
+gamma=0.172	Iteration times =5522
+gamma =0.172
+gamma=0.173	Iteration times =2170
+gamma =0.173
+gamma=0.174	Iteration times =2334
+gamma =0.174
+cell update 0.094394,-0.013530,0.437384,imax=1445
+gamma=0.175	Iteration times =9874
+gamma =0.175
+cell update -0.153991,0.187407,-0.375724,imax=904
+cell update 0.053871,0.225391,0.382730,imax=1492
+cell update -0.110094,0.145483,0.408650,imax=1436
+cell update 0.205478,-0.391677,-0.066291,imax=1090
+cell update -0.155273,-0.324438,-0.266465,imax=510
+cell update -0.116238,0.431376,-0.031491,imax=2029
+cell update 0.000448,-0.446725,-0.023012,imax=295
+cell update -0.086326,-0.399539,-0.183488,imax=1525
+gamma=0.176	Iteration times =28559
+gamma =0.176
+gamma=0.177	Iteration times =2134
+gamma =0.177
+gamma=0.178	Iteration times =2398
+gamma =0.178
+gamma=0.179	Iteration times =2991
+gamma =0.179
+gamma=0.18	Iteration times =5195
+gamma =0.18
+gamma=0.181	Iteration times =1754
+gamma =0.181
+gamma=0.182	Iteration times =1950
+gamma =0.182
+gamma=0.183	Iteration times =1307
+gamma =0.183
+cell update 0.043610,0.219795,-0.387525,imax=1217
+cell update 0.163984,0.399710,0.119187,imax=1152
+gamma=0.184	Iteration times =8739
+gamma =0.184
+gamma=0.185	Iteration times =2187
+gamma =0.185
+gamma=0.186	Iteration times =2274
+gamma =0.186
+gamma=0.187	Iteration times =1677
+gamma =0.187
+gamma=0.188	Iteration times =1872
+gamma =0.188
+gamma=0.189	Iteration times =2015
+gamma =0.189
+gamma=0.19	Iteration times =1789
+gamma =0.19
+gamma=0.191	Iteration times =2047
+gamma =0.191
+gamma=0.192	Iteration times =1982
+gamma =0.192
+/opt/uge/default/spool/einstein/job_scripts/34356: 12 行: 265618 Segmentation fault      (コアダンプ) ./MD_KAM_3d_AQS_FIRE.out
