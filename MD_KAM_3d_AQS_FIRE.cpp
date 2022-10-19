@@ -146,7 +146,7 @@ void cell_list(int (*list)[Nn],double (*x)[dim],int M,double gamma)
   
   for(i=0;i<Np;i++){
     list[i][0]=0;
-    nx = f((int)(x[i][0]*M/L),M);
+    nx = f((int)((x[i][0]-gamma*x[i][1])*M/L),M);
     ny = f((int)(x[i][1]*M/L),M);
     nz = f((int)(x[i][2]*M/L),M);
     
