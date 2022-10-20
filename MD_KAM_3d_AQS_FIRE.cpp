@@ -123,7 +123,7 @@ void cell_list(int (*list)[Nn],double (*x)[dim],int M,double gamma)
   int nx,ny,nz;
   int l,m,n;
   double dx,dy,dy_temp,dz,r2;
-  double thresh=cut*7./6.+skin;
+  double thresh=cut*7./6.*sqrt(2.0)+skin;
   
   int (*map)[Np]=new int[M*M*M][Np];
   
@@ -265,7 +265,7 @@ void calc_force(double (*x)[dim],double (*f)[dim],int *a,double *U,int (*list)[N
 	Ucut=4.*eij*w12cut-4.*eij*w6cut;
 
 	dUr=(-48.*eij*w12+24*eij*w6)/dr2-dUrcut/dr;
-	*txy += dx*dy*dUr/L/L;
+	*txy += dx*dy*dUr/L/L/L;
 	f[i][0]-=dUr*dx;
 	f[list[i][j]][0]+=dUr*dx;
 	f[i][1]-=dUr*dy;
@@ -643,15 +643,16 @@ int main(){
     FIRE(x,f,gamma,list,a,M,&U,&txy);
     if(gamma < 0.5){
       if(count == 1){
+	output_shear(gamma,txy,txy0);
 	output_coord_NAD(x,x0,a,gamma);
 	count = 0;
       }
     }
-    if(step == int(sampling_step/d_gamma)){
-      output_shear(gamma,txy,txy0);
-      sampling_step *= pow(10,0.1);
-      sampling_step=int(sampling_step/d_gamma)*d_gamma;
-    }
+    //    if(step == int(sampling_step/d_gamma)){
+    //      output_shear(gamma,txy,txy0);
+      //sampling_step *= pow(10,0.1);
+      //sampling_step=int(sampling_step/d_gamma)*d_gamma;
+      //}
     std::cout<<"gamma ="<< gamma <<std::endl;
   }
   return 0;
