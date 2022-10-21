@@ -615,7 +615,7 @@ void Fs(double (*x)[dim],double (*xf)[dim],double *fs){
 int main(){
   double x[Np][dim],x0[Np][dim],x_update[Np][dim],v[Np][dim],f[Np][dim],xf[Np][dim],kine;
   int list[Np][Nn],a[Np];
-  double tout=0.0,U,disp_max=0.0,temp_anneal,gamma=0.0,txy=0.0,txy0=0.0,fs=0.0;
+  double tout=0.0,U,disp_max=0.0,temp_anneal,gamma=0.0,txy=0.0,txy0=0.0,fs=0.0,t=0.0,ta;
   double e=exp(1);
   int step=0;
   int j=0;
@@ -661,16 +661,25 @@ int main(){
   
   j=0;
   while(1){
-    j++;
+    t+=dtmd;
     auto_list_update(&disp_max,x,x_update,list,M);
     eom_md(v,x,f,a,&U,dtmd,list,&txy);
     Fs(x,xf,&fs);
     output_Fs(j,fs);
     if(fs<1.0/e){
       cout << "Fs(q,t)<1/e" << endl;
+      cout << "tau_alpha = " << ta << endl;
       break;
     }
   }
+
+  while(t<100.0*ta){
+    t+=dtmd;
+    auto_list_update(&disp_max,x,x_update,list,M);
+    eom_md(v,x,f,a,&U,dtmd,list,&txy);
+  }
+
+  cout << "equilibriation!!" << endl;
   
   steepest_descent(x,f,gamma,list,a,M,&U,&txy);
   FIRE(x,f,gamma,list,a,M,&U,&txy);
