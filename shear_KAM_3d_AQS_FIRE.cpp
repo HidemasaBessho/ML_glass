@@ -542,12 +542,12 @@ void output(int k,double (*v)[dim],double U){
   file.close();
 }
 
-void output_Fs(int j,double fs){
+void output_Fs(double t,double fs){
   char filename[128];
   ofstream file;
   sprintf(filename,"fs.dat");
   file.open(filename,ios::app);
-  file<< setprecision(6)<<double(j*dtmd)<<" "<<fs<< endl;
+  file<< setprecision(6)<<t<<" "<<fs<< endl;
   file.close();
 }
 
@@ -608,7 +608,7 @@ void Fs(double (*x)[dim],double (*xf)[dim],double *fs){
     dx-=L*floor((dx+0.5*L)/L);
     dy-=L*floor((dy+0.5*L)/L);
     dz-=L*floor((dz+0.5*L)/L);
-    *fs += (cos(-q*dx)+cos(-q*dy)+cos(-q*dz))/Np/2.0;
+    *fs += (cos(-q*dx)+cos(-q*dy)+cos(-q*dz))/Np/3.0;
   }
 }  
 
