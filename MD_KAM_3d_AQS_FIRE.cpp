@@ -606,6 +606,7 @@ void output_shear(double gamma,double rfxy,double U){
   file.close();
 }
 
+//// calculation of Fs(k,t)
 void Fs(double (*x)[dim],double (*xf)[dim],double *fs){
   double q=2.0*M_PI/1.0;
   int i,j;
@@ -620,7 +621,7 @@ void Fs(double (*x)[dim],double (*xf)[dim],double *fs){
     dz-=L*floor((dz+0.5*L)/L);
     *fs += (cos(-q*dx)+cos(-q*dy)+cos(-q*dz))/Np/3.0;
   }
-}
+} 
 
 void output_Fs(double t,double fs){
   char filename[128];
