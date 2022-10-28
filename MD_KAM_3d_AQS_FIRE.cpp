@@ -623,6 +623,7 @@ void Fs(double (*x)[dim],double (*xf)[dim],double *fs){
   }
 } 
 
+//// output Fs(k,t)
 void output_Fs(double t,double fs){
   char filename[128];
   std::ofstream file;
@@ -671,6 +672,8 @@ int main(){
     t=j*dtbd;
     auto_list_update(&disp_max,x,x_update,list,M);
     eom_langevin(v,x,f,a,&U,dtbd,temp,list,&kine,stress);
+	  
+    /// log sampling of Fs(k,t) ///
     if(int(t/dtbd) == int(sampling_time/dtbd)){
       Fs(x,xf,&fs);
       output_Fs(j,fs);
