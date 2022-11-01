@@ -383,7 +383,7 @@ int main(){
     auto_list_update(&disp_max,x,x_update,list,M);
     eom_langevin(v,x,f,a,&U,dtbd,temp_anneal,list,&kine);
     com_correction(x,&x_corr,&y_corr);
-    if(tcount==int(teq/2000.0/dtbd)){
+    if(tcount==int(teq/1000.0/dtbd)){
       output(j,v,U,temp_anneal);
       tcount=0;
     }
@@ -399,8 +399,8 @@ int main(){
     auto_list_update(&disp_max,x,x_update,list,M);
     eom_langevin(v,x,f,a,&U,dtbd,temp,list,&kine);
     com_correction(x,&x_corr,&y_corr);
-    if(tcount==int(teq/2000.0/dtbd)){
-      output(j,v,U,temp_anneal);
+    if(tcount==int(teq/1000.0/dtbd)){
+      output(j,v,U,temp);
       tcount=0;
     }
     //  std::cout<<f[0][0]<<" "<<kine<<std::endl;
