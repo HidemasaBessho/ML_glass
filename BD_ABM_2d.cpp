@@ -280,8 +280,8 @@ void output(int k,double (*v)[dim],double U,double T){
     for(int j=0;j<dim;j++)
       K+=0.5*v[i][j]*v[i][j];
 
-  //  std::cout<< std::setprecision(6)<<k*dtmd<<"\t"<<K/Np<<"\t"<<U/Np<<"\t"<<(K+U)/Np<<std::endl;
-  file<< std::setprecision(6)<<k*dtmd<<"\t"<<T<<"\t"<<K/Np<<"\t"<<U/Np<<"\t"<<(K+U)/Np<<std::endl;
+  //  std::cout<< std::setprecision(6)<<k*dtbd<<"\t"<<K/Np<<"\t"<<U/Np<<"\t"<<(K+U)/Np<<std::endl;
+  file<< std::setprecision(6)<<k*dtbd<<"\t"<<T<<"\t"<<K/Np<<"\t"<<U/Np<<"\t"<<(K+U)/Np<<std::endl;
   file.close();
 }
 
