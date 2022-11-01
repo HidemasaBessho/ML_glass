@@ -94,7 +94,7 @@ int com_correction(double (*x)[dim],double *x_corr,double *y_corr){
   if(IsFirst){
     for(i=0;i<Np;i++){
       for(j=0;j<dim;j++){
-        X0[i][j] = x[i][j];
+	X0[i][j] = x[i][j];
       }
     }
     IsFirst = false;
@@ -127,15 +127,15 @@ void list_verlet(int (*list)[Nn],double (*x)[dim]){
   for(int i=0;i<Np;i++)
     for(int j=0;j<Np;j++){
       if(j>i){
-        dx=x[i][0]-x[j][0];
-        dy=x[i][1]-x[j][1];
-        dx-=L*floor((dx+0.5*L)/L);
-        dy-=L*floor((dy+0.5*L)/L);
-        dr2=dx*dx+dy*dy;
-        if(dr2<thresh*thresh){
-          list[i][0]++;
-          list[i][(int)list[i][0]]=j;
-        }
+	dx=x[i][0]-x[j][0];
+	dy=x[i][1]-x[j][1];
+	dx-=L*floor((dx+0.5*L)/L);
+	dy-=L*floor((dy+0.5*L)/L);
+	dr2=dx*dx+dy*dy;
+	if(dr2<thresh*thresh){
+	  list[i][0]++;
+	  list[i][(int)list[i][0]]=j;
+	}
       }
     }
 }
@@ -174,8 +174,8 @@ void cell_list(int (*list)[Nn],double (*x)[dim],int M)
 
     for(m=ny-1;m<=ny+1;m++){
       for(l=nx-1;l<=nx+1;l++){
-        map[f(l,M)+M*f(m,M)][map[f(l,M)+M*f(m,M)][0] +1]=i;
-        map[f(l,M)+M*f(m,M)][0]++;
+	map[f(l,M)+M*f(m,M)][map[f(l,M)+M*f(m,M)][0] +1]=i;
+	map[f(l,M)+M*f(m,M)][0]++;
       }
     }
   }
@@ -188,23 +188,24 @@ void cell_list(int (*list)[Nn],double (*x)[dim],int M)
     for (k=1; k<=(map[nx+M*ny][0]); k++){
       j = map[nx+M*ny][k];
       if(j>i){
-        dx =x[i][0] - x[j][0];
-        dy =x[i][1] - x[j][1];
+	dx =x[i][0] - x[j][0];
+	dy =x[i][1] - x[j][1];
 
-        dx-=L*floor((dx+0.5*L)/L);
-        dy-=L*floor((dy+0.5*L)/L);
+	dx-=L*floor((dx+0.5*L)/L);
+	dy-=L*floor((dy+0.5*L)/L);
 
-        r2 = dx*dx + dy*dy;
+	r2 = dx*dx + dy*dy;
 
-        if(r2<thresh*thresh){
-          list[i][0]++;
-          list[i][list[i][0]]=j;
-        }
+	if(r2<thresh*thresh){
+	  list[i][0]++;
+	  list[i][list[i][0]]=j;
+	}
       }
     }
   }
   delete []map;
 }
+
 
 void calc_force(double (*x)[dim],double (*f)[dim],int *a,double *U,int (*list)[Nn]){
   double dx,dy,dr2,dUr,w2,w6,w12,w2cut,w6cut,w12cut,aij,eij,dUrcut,Ucut,dr;
@@ -218,38 +219,38 @@ void calc_force(double (*x)[dim],double (*f)[dim],int *a,double *U,int (*list)[N
       dy-=L*floor((dy+0.5*L)/L);
       dr2=dx*dx+dy*dy;
       if(a[i]+a[list[i][j]] == 2){
-        aij=1.0;
-        eij=1.0;
-        //      1:0 0:8 0:88
-        //  1:0 0:5 1:5
+	aij=1.0;
+	eij=1.0;
+	//      1:0 0:8 0:88
+	//  1:0 0:5 1:5
       }
       if(a[i]+a[list[i][j]] == 3){
-        aij=0.8;
-        eij=1.5;
+	aij=0.8;
+	eij=1.5;
       }
       if(a[i]+a[list[i][j]] == 4){
-        aij=0.88;
-        eij=0.5;
+	aij=0.88;
+	eij=0.5;
       }
 
       if(dr2<cut*cut*aij*aij){
-        dr=sqrt(dr2);
-        w2=aij*aij/dr2;
-        w6=w2*w2*w2;
-        w12=w6*w6;
+	dr=sqrt(dr2);
+	w2=aij*aij/dr2;
+	w6=w2*w2*w2;
+	w12=w6*w6;
 
-        w2cut=1./cut/cut;
-        w6cut=w2cut*w2cut*w2cut;
-        w12cut=w6cut*w6cut;
-        dUrcut=-48.*eij*w12cut/(cut*aij)+24.*eij*w6cut/(cut*aij);
-        Ucut=4.*eij*w12cut-4.*eij*w6cut;
+	w2cut=1./cut/cut;
+	w6cut=w2cut*w2cut*w2cut;
+	w12cut=w6cut*w6cut;
+	dUrcut=-48.*eij*w12cut/(cut*aij)+24.*eij*w6cut/(cut*aij);
+	Ucut=4.*eij*w12cut-4.*eij*w6cut;
 
-        dUr=(-48.*eij*w12+24*eij*w6)/dr2-dUrcut/dr;
-        f[i][0]-=dUr*dx;
-        f[list[i][j]][0]+=dUr*dx;
-        f[i][1]-=dUr*dy;
-        f[list[i][j]][1]+=dUr*dy;
-        *U+=4.*eij*w12-4.*eij*w6-Ucut-dUrcut*(dr-cut*aij);
+	dUr=(-48.*eij*w12+24*eij*w6)/dr2-dUrcut/dr;
+	f[i][0]-=dUr*dx;
+	f[list[i][j]][0]+=dUr*dx;
+	f[i][1]-=dUr*dy;
+	f[list[i][j]][1]+=dUr*dy;
+	*U+=4.*eij*w12-4.*eij*w6-Ucut-dUrcut*(dr-cut*aij);
       }
     }
 }
@@ -282,7 +283,7 @@ void eom_md(double (*v)[dim],double (*x)[dim],double (*f)[dim],int *a,double *U,
   p_boundary(x);
 }
 
-void output(int k,double (*v)[dim],double U){
+void output(int k,double (*v)[dim],double U,double T){
   char filename[128];
   double K=0.0;
 
@@ -293,8 +294,8 @@ void output(int k,double (*v)[dim],double U){
     for(int j=0;j<dim;j++)
       K+=0.5*v[i][j]*v[i][j];
 
-  std::cout<< std::setprecision(6)<<k*dtmd<<"\t"<<K/Np<<"\t"<<U/Np<<"\t"<<(K+U)/Np<<std::endl;
-  file<< std::setprecision(6)<<k*dtmd<<"\t"<<K/Np<<"\t"<<U/Np<<"\t"<<(K+U)/Np<<std::endl;
+  //  std::cout<< std::setprecision(6)<<k*dtmd<<"\t"<<T<<"\t"<<K/Np<<"\t"<<U/Np<<"\t"<<(K+U)/Np<<std::endl;
+  file<< std::setprecision(6)<<k*dtmd<<"\t"<<T<<"\t"<<K/Np<<"\t"<<U/Np<<"\t"<<(K+U)/Np<<std::endl;
   file.close();
 }
 
@@ -335,25 +336,23 @@ void auto_list_update(double *disp_max,double (*x)[dim],double (*x_update)[dim],
 void Fs(double (*x)[dim],double (*xf)[dim],double *fs,double *x_corr,double *y_corr){
   double q=2.0*M_PI/1.0;
   int i,j;
-  double dx,dy,dz;
+  double dx,dy;
   *fs=0.0;
   for(i=0;i<Np;i++){
     dx = (x[i][0]-(*x_corr))-xf[i][0];
     dy = (x[i][1]-(*y_corr))-xf[i][1];
-    //    dz = x[i][2]-xf[i][2];
     dx-=L*floor((dx+0.5*L)/L);
     dy-=L*floor((dy+0.5*L)/L);
-    //    dz-=L*floor((dz+0.5*L)/L);
     *fs += (cos(-q*dx)+cos(-q*dy))/Np/2.0;
   }
 }
 
-void output_Fs(double t,double fs,double time_stamp){
+void output_Fs(double t,double fs,double time_stamp,double t0){
   char filename[128];
   std::ofstream file;
   sprintf(filename,"fs.dat");
   file.open(filename,std::ios::app);
-  file<< std::setprecision(6)<<t-time_stamp<<"\t"<<fs<< std::endl;
+  file<< std::setprecision(6)<<t0-(t-time_stamp)<<"\t"<<fs<< std::endl;
   file.close();
 }
 
@@ -366,8 +365,8 @@ void copy_array(double (*x)[dim],double (*x0)[dim]){
 int main(){
   double x[Np][dim],x_update[Np][dim],v[Np][dim],f[Np][dim],kine,t=0.0,fs=0.0,xf[Np][dim];
   int list[Np][Nn],a[Np];
-  double tout=0.0,U,disp_max=0.0,temp_anneal,sampling_time,time_stamp=0.0,sampling_time_max=1.e+4;
-  int i,j=0;
+  double tout=0.0,U,disp_max=0.0,temp_anneal,sampling_time,time_stamp=0.0,sampling_time_max=1.e+4,t0=0.0;
+  int i,j=0,count=0,tcount=0;
   int M=(int)(L/(cut+skin));
   double x_corr=0.0,y_corr=0.0;
   set_diameter(a);
@@ -379,49 +378,60 @@ int main(){
   j=0;
   while(j*dtbd < teq){
     j++;
+    tcount++;
     temp_anneal=4.0-j*dtbd*(4.0-temp)/teq;
     auto_list_update(&disp_max,x,x_update,list,M);
     eom_langevin(v,x,f,a,&U,dtbd,temp_anneal,list,&kine);
     com_correction(x,&x_corr,&y_corr);
+    if(tcount==int(teq/2000.0/dtbd)){
+      output(j,v,U,temp_anneal);
+      tcount=0;
+    }
     //  std::cout<<f[0][0]<<" "<<kine<<std::endl;
   }
 
   j=0;
+  tcount=0;
+
   while(j*dtbd < teq){
     j++;
+    tcount++;
     auto_list_update(&disp_max,x,x_update,list,M);
     eom_langevin(v,x,f,a,&U,dtbd,temp,list,&kine);
     com_correction(x,&x_corr,&y_corr);
+    if(tcount==int(teq/2000.0/dtbd)){
+      output(j,v,U,temp_anneal);
+      tcount=0;
+    }
     //  std::cout<<f[0][0]<<" "<<kine<<std::endl;
   }
 
   j=0;
-
-  for(i=0;i<Np;i++){
-    xf[i][0] = x[i][0]-x_corr;
-    xf[i][1] = x[i][1]-y_corr;
-  }
 
   sampling_time=10.0*dtbd;
   for(t=0.0;t<tmax;t+=dtbd){
     auto_list_update(&disp_max,x,x_update,list,M);
-    //    eom_md(v,x,f,a,&U,dtmd,list);
     eom_langevin(v,x,f,a,&U,dtbd,temp,list,&kine);
     com_correction(x,&x_corr,&y_corr);
     if(int(t/dtbd) == int((sampling_time + time_stamp)/dtbd)){
-      //      output_t(x,y,avU,avK,Np,t,time_stamp,x_corr,y_corr);
-      Fs(x,xf,&fs,&x_corr,&y_corr);
-      output_Fs(t,fs,time_stamp);
-      sampling_time*=pow(10.,0.1);
-      sampling_time=int(sampling_time/dtbd)*dtbd;
+      if(count==0){
+	t0=t-time_stamp;
+	for(i=0;i<Np;i++){
+	  xf[i][0] = x[i][0]-x_corr;
+	  xf[i][1] = x[i][1]-y_corr;
+	}
+	count++;
+      }
+      else{
+	Fs(x,xf,&fs,&x_corr,&y_corr);
+	output_Fs(t,fs,time_stamp,t0);
+	sampling_time*=pow(10.,0.1);
+	sampling_time=int(sampling_time/dtbd)*dtbd;
+      }
       if(sampling_time > sampling_time_max/pow(10.,0.1)){
         time_stamp=t;
         sampling_time=10.0*dtbd;
-        copy_array(x,xf);
-        for(i=0;i<Np;i++){
-          xf[i][0] = xf[i][0]-x_corr;
-          xf[i][1] = xf[i][1]-y_corr;
-        }
+	count=0;
       }
     }
   }
