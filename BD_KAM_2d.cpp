@@ -420,6 +420,8 @@ int main(){
 	  xf[i][0] = x[i][0]-x_corr;
 	  xf[i][1] = x[i][1]-y_corr;
 	}
+	sampling_time*=pow(10.,0.1);
+	sampling_time=int(sampling_time/dtbd)*dtbd;
 	count++;
       }
       else{
