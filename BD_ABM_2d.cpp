@@ -339,7 +339,7 @@ void output_Fs(double t,double fs,double time_stamp,double t0){
   std::ofstream file;
   sprintf(filename,"fs.dat");
   file.open(filename,std::ios::app);
-  file<< std::setprecision(6)<<t0-(t-time_stamp)<<"\t"<<fs<< std::endl;
+  file<< std::setprecision(6)<<(t-time_stamp)-t0<<"\t"<<fs<< std::endl;
   file.close();
 }
 
