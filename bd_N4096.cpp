@@ -423,7 +423,8 @@ int main(int argc, char *argv[])
   char filename[128];
 
   for(i=1;i<argc;i++)
-    T = atof(argv[i]);
+    T = atof(argv[i]); // reading temp from shell script  atof : floot  atoi : int
+  // change ensemble number : srand(ensemble number)
 
   ini_coord_rand(x, y, a, Np, L, r1, r2);
   ini(vx, vy, Np);  
