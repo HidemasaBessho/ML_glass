@@ -168,7 +168,7 @@ void eom_langevin_hs(double (*v)[dim],double (*x)[dim],double (*f)[dim],double *
   calc_force_hs(x,f,a,&(*U),list,L);
   for(int i=0;i<Np;i++)
     for(int j=0;j<dim;j++){
-      v[i][j]+=-zeta*v[i][j]*dt+f[i][j]*dt;
+      v[i][j] = f[i][j]/zeta;
       x[i][j]+=v[i][j]*dt;
       //*kine +=v[i][j]*v[i][j]/3.0/Np;                                                                                                                                                                                                                                         
     }
