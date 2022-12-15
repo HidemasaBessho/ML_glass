@@ -5,7 +5,7 @@
 #include <iostream>
 #include <fstream>
 #include <cfloat>
-
+using namespace std;
 
 #define Np 4000 //# of the particles
 #define rho 1.09 //# density
@@ -14,7 +14,7 @@
 #define teq 4000 //equilibration time
 #define tmax 100000 //production run time
 #define dtmd 0.001 //dt for molecular dynamics
-#define dtbd 0.005 //dt for brownian dynamics
+#define dtbd 0.01 //dt for brownian dynamics
 #define temp 1.0 // temperature
 #define dim 2 //spatial dimension
 #define cut 2.5 //potential cut off
@@ -287,15 +287,28 @@ void output(int k,double (*v)[dim],double U,double T){
   char filename[128];
   double K=0.0;
 
-  std::ofstream file;
+  ofstream file;
   sprintf(filename,"energy.dat");
-  file.open(filename,std::ios::app); //append
+  file.open(filename,ios::app); //append
   for(int i=0;i<Np;i++)
     for(int j=0;j<dim;j++)
       K+=0.5*v[i][j]*v[i][j];
 
   //  std::cout<< std::setprecision(6)<<k*dtbd<<"\t"<<T<<"\t"<<K/Np<<"\t"<<U/Np<<"\t"<<(K+U)/Np<<std::endl;
-  file<< std::setprecision(6)<<k*dtbd<<"\t"<<T<<"\t"<<K/Np<<"\t"<<U/Np<<"\t"<<(K+U)/Np<<std::endl;
+  file<< setprecision(6) << k*dtbd << " " << T << " " << K/Np << " " << U/Np << " " << (K+U)/Np << endl;
+  file.close();
+}
+
+void output_t(double (*x)[dim],double t,double time_stamp,double x_corr,double y_corr)
+{
+  int i;
+  char filename[128];
+  ofstream file;
+  sprintf(filename,"time_coord_N%d_T%.2f.dat",Np,temp);
+  file.open(filename,ios::app);
+  for(i=0;i<Np;i++){
+    file << setprecision(6) << t-time_stamp << " " << x[i][0]-x_corr << " " << x[i][1]-y_corr << endl;
+  }
   file.close();
 }
 
@@ -333,29 +346,6 @@ void auto_list_update(double *disp_max,double (*x)[dim],double (*x_update)[dim],
   }
 }
 
-void Fs(double (*x)[dim],double (*xf)[dim],double *fs,double *x_corr,double *y_corr){
-  double q=2.0*M_PI/1.0;
-  int i,j;
-  double dx,dy;
-  *fs=0.0;
-  for(i=0;i<Np;i++){
-    dx = (x[i][0]-(*x_corr))-xf[i][0];
-    dy = (x[i][1]-(*y_corr))-xf[i][1];
-    dx-=L*floor((dx+0.5*L)/L);
-    dy-=L*floor((dy+0.5*L)/L);
-    *fs += (cos(-q*dx)+cos(-q*dy))/Np/2.0;
-  }
-}
-
-void output_Fs(double t,double fs,double time_stamp,double t0){
-  char filename[128];
-  std::ofstream file;
-  sprintf(filename,"fs.dat");
-  file.open(filename,std::ios::app);
-  file<< std::setprecision(6)<<(t-time_stamp)-t0<<"\t"<<fs<< std::endl;
-  file.close();
-}
-
 void copy_array(double (*x)[dim],double (*x0)[dim]){
   for(int i=0;i<Np;i++)
     for(int j=0;j<dim;j++)
@@ -365,8 +355,9 @@ void copy_array(double (*x)[dim],double (*x0)[dim]){
 int main(){
   double x[Np][dim],x_update[Np][dim],v[Np][dim],f[Np][dim],kine,t=0.0,fs=0.0,xf[Np][dim];
   int list[Np][Nn],a[Np];
-  double tout=0.0,U,disp_max=0.0,temp_anneal,sampling_time,time_stamp=0.0,sampling_time_max=1.e+4,t0=0.0;
-  int i,j=0,count=0,tcount=0;
+  double tout=0.0,U,disp_max=0.0,temp_anneal,sampling_time,time_stamp=0.0,sampling_time_max=1.e+4,t0=0.0,dT=8.33*1.e-5;
+  double tanneal=(4.0-temp)/dT;
+  int i,j=0,count=0,tcount=0,ens_count=0;
   int M=(int)(L/(cut+skin));
   double x_corr=0.0,y_corr=0.0;
   set_diameter(a);
@@ -376,17 +367,13 @@ int main(){
   std::cout<<"L="<<L<<"M="<<M<<std::endl;
 
   j=0;
-  while(j*dtbd < teq){
+  while(t=0;t<tanneal;t+=dtbd){
     j++;
     tcount++;
-    temp_anneal=4.0-j*dtbd*(4.0-temp)/teq;
+    temp_anneal=-dT*t+4.0;
     auto_list_update(&disp_max,x,x_update,list,M);
     eom_langevin(v,x,f,a,&U,dtbd,temp_anneal,list,&kine);
     com_correction(x,&x_corr,&y_corr);
-    if(tcount==int(teq/1000.0/dtbd)){
-      output(j,v,U,temp_anneal);
-      tcount=0;
-    }
     //  std::cout<<f[0][0]<<" "<<kine<<std::endl;
   }
 
@@ -399,42 +386,30 @@ int main(){
     auto_list_update(&disp_max,x,x_update,list,M);
     eom_langevin(v,x,f,a,&U,dtbd,temp,list,&kine);
     com_correction(x,&x_corr,&y_corr);
-    if(tcount==int(teq/1000.0/dtbd)){
-      output(j,v,U,temp);
-      tcount=0;
-    }
     //  std::cout<<f[0][0]<<" "<<kine<<std::endl;
   }
 
   j=0;
+  t=0.0;
 
-  sampling_time=10.0*dtbd;
-  for(t=0.0;t<tmax;t+=dtbd){
+  sampling_time=5.0*dtbd;
+  for(t=dtbd;t<tmax;t+=dtbd){
     auto_list_update(&disp_max,x,x_update,list,M);
     eom_langevin(v,x,f,a,&U,dtbd,temp,list,&kine);
     com_correction(x,&x_corr,&y_corr);
     if(int(t/dtbd) == int((sampling_time + time_stamp)/dtbd)){
-      if(count==0){
-	t0=t-time_stamp;
-	for(i=0;i<Np;i++){
-	  xf[i][0] = x[i][0]-x_corr;
-	  xf[i][1] = x[i][1]-y_corr;
-	}
-	sampling_time*=pow(10.,0.1);
-	sampling_time=int(sampling_time/dtbd)*dtbd;
-	count++;
-      }
-      else{
-	Fs(x,xf,&fs,&x_corr,&y_corr);
-	output_Fs(t,fs,time_stamp,t0);
-	sampling_time*=pow(10.,0.1);
-	sampling_time=int(sampling_time/dtbd)*dtbd;
-      }
+      output_t(x,t,time_stamp,x_corr,y_corr);
+      sampling_time*=pow(10.,0.1);
+      sampling_time=int(sampling_time/dtbd)*dtbd;
       if(sampling_time > sampling_time_max/pow(10.,0.1)){
         time_stamp=t;
-        sampling_time=10.0*dtbd;
-	count=0;
+        sampling_time=5.0*dtbd;
+	ens_count++;
       }
+    }
+    if(ens_count>=150){
+     cout << ens_count << endl;
+     break;
     }
   }
   return 0;
