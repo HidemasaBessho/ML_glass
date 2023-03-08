@@ -13,7 +13,7 @@
 #define r2 1.4
 #define L sqrt(M_PI*Np*(a1*a1+a2*a2)/8.0/phi)
 #define dtbd 0.1
-#deifne dim 2
+#define dim 2
 #define cut 2.5
 #define skin 1.0
 using namespace std;
