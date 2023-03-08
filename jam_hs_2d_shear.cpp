@@ -170,8 +170,11 @@ void cell_list(int (*list)[Nn],double (*x)[dim],int M,double gamma)
 
 void calc_force_hs(double (*x)[dim],double (*f)[dim],double *a,double *U,int (*list)[Nn],double *txy,double *stress,double gamma){
   double dx,dy,dy_temp,dr2,dUr,aij,eij,dUrcut,Ucut,dr,t;
-  ini_array(f);
-  *U=0;
+  ini_matrix(f);
+  ini_array(stress);
+  *U=0.0;
+  *txy=0.0;
+	
   for(int i=0;i<Np;i++){
     for(int j=1;j<=list[i][0];j++){
       dx=x[i][0]-x[list[i][j]][0];
