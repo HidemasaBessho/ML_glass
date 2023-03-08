@@ -58,11 +58,11 @@ void set_diameter(double *a){
   int p=0,i;
   for(i=0;i<Np;i++){
     if(p==0){
-      a[i] = a1;
+      a[i] = r1;
       p += 1;
     }
     else if(p==1){
-      a[i] = a2;
+      a[i] = r2;
       p -= 1;
     }
   }
@@ -465,7 +465,7 @@ int main(){
   
   for(t=0.0;t<teq;t+=dths){
     auto_list_update(&disp_max,x,x_update,list,M);
-    eom_langevin_hs(v,x,f,a,&U,dths,list,&kine,&txy,stress,gamma);
+    eom_langevin_hs(v,x,f,a,&U,dtbd,list,&kine,&txy,stress,gamma);
   }
   
   steepest_descent(x,f,gamma,list,a,M,&U,&txy,stress);
