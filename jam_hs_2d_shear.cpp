@@ -9,8 +9,8 @@
 #define Np 4096
 #define phi 0.9
 #define Nn 1000
-#define r1 1.0
-#define r2 1.4
+#define a1 1.0
+#define a2 1.4
 #define L sqrt(M_PI*Np*(a1*a1+a2*a2)/8.0/phi)
 #define dtbd 0.1
 #define dim 2
@@ -58,11 +58,11 @@ void set_diameter(double *a){
   int p=0,i;
   for(i=0;i<Np;i++){
     if(p==0){
-      a[i] = r1;
+      a[i] = a1;
       p += 1;
     }
     else if(p==1){
-      a[i] = r2;
+      a[i] = a2;
       p -= 1;
     }
   }
@@ -463,7 +463,7 @@ int main(){
   ini_matrix(v);
   cell_list(list,x,M,0.0);
   
-  for(t=0.0;t<teq;t+=dths){
+  for(t=0.0;t<teq;t+=dtbd){
     auto_list_update(&disp_max,x,x_update,list,M);
     eom_langevin_hs(v,x,f,a,&U,dtbd,list,&kine,&txy,stress,gamma);
   }
