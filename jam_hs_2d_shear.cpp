@@ -460,7 +460,7 @@ int main(){
   set_diameter(a);
   ini_coord_rand(x);
  
-  ini_array(v);
+  ini_matrix(v);
   cell_list(list,x,M,0.0);
   
   for(t=0.0;t<teq;t+=dths){
