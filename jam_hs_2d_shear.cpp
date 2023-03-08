@@ -18,7 +18,7 @@
 #define skin 1.0
 using namespace std;
 
-ouble unif_rand(double left, double right)
+double unif_rand(double left, double right)
 {
   return left + (right - left)*rand()/RAND_MAX;
 }
