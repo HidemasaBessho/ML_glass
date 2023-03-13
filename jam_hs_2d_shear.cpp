@@ -50,7 +50,6 @@ void ini_coord_rand(double (*x)[dim]){
   for(int i = 0 ; i < Np; i++){
     x[i][0] = L*unif_rand(0.,1.);
     x[i][1] = L*unif_rand(0.,1.);
-    x[i][2] = L*unif_rand(0.,1.);
   }
 }
 
@@ -290,7 +289,7 @@ int FIRE(double (*x)[dim],double (*f)[dim],double gamma,int (*list)[Nn],double *
   cell_list(list,x,M,gamma); 
 
   for(i=0;i<Np;i++){
-       for(j=0;j<dim;j++){
+	  for(j=0;j<dim;j++){
       v[i][j]  = 0.0;
       x0[i][j] = x[i][j];
     }
@@ -384,7 +383,7 @@ int FIRE(double (*x)[dim],double (*f)[dim],double gamma,int (*list)[Nn],double *
 }
 
 void output_coord_NAD(double (*x)[dim],double(*x0)[dim],double *a,double gamma){
-  double dx,dy,dy_temp,dz; 
+  double dx,dy,dy_temp; 
   char filename[128];
   ofstream file;
   sprintf(filename,"coord_disp_gamma%.3f.csv",gamma);
@@ -393,12 +392,10 @@ void output_coord_NAD(double (*x)[dim],double(*x0)[dim],double *a,double gamma){
   for(int i=0;i<Np;i++){
     dy = x[i][1]-x0[i][1];
     dx = x[i][0]-x0[i][0];
-    dz = x[i][2]-x0[i][2];
     dy_temp=dy;
     dy -= L*floor((dy+0.5*L)/L);
     dx -= gamma*L*floor((dy_temp+0.5*L)/L);
     dx -= L*floor((dx+0.5*L)/L);
-    dz -= L*floor((dz+0.5*L)/L);
     // std::cout<<std::setprecision(15)<<x[i][0]<<" "<<x0[i][0]+gamma*x[i][1]<<" "<<x[i][2]<<" "<<x0[i][2]<<std::endl;
     file<< setprecision(10)<<a[i]<<","<<x[i][0]<<","<<x[i][1]<<","<<dx-gamma*x[i][1]<<","<<dy<<","<< endl;
   }
