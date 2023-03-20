@@ -276,6 +276,7 @@ void mc(double (*x)[dim],double *a,double *U,double temp0,int *count,double (*f)
         a[i] = *sigma;
       }
     *trial_count = 1;
+    }
   }
   p_boundary_mc(x,i);
 }
