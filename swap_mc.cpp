@@ -12,7 +12,7 @@
 #define sqrt(Np/rho)
 #define dtbdhs 0.1
 #define dim 2
-#define temp 0.2
+#define temp 0.3
 #define cut 2.5
 #define skin 1.0
 #define delta 0.15
