@@ -9,7 +9,7 @@
 #define Np 1024
 #define rho 0.8
 #define Nn 500
-#define sqrt(Np/rho)
+#define L sqrt(Np/rho)
 #define dtbdhs 0.1
 #define dim 2
 #define temp 0.3
@@ -17,6 +17,7 @@
 #define skin 1.0
 #define delta 0.15
 #define polydispersity 0.1
+#define mcstep_max 100000
 using namespace std;
 
 double unif_rand(double left, double right)
@@ -169,8 +170,6 @@ void calc_force_hs(double (*x)[dim],double (*f)[dim],double *a,double *U,int (*l
         f[list[i][j]][0]+=dUr*dx/dr;
         f[i][1]-=dUr*dy/dr;
         f[list[i][j]][1]+=dUr*dy/dr;
-        f[i][2]-=dUr*dz/dr;
-        f[list[i][j]][2]+=dUr*dz/dr;
         *U += 0.5*(1.0-t)*(1.0-t);
       }
     }
@@ -179,7 +178,7 @@ void calc_force_hs(double (*x)[dim],double (*f)[dim],double *a,double *U,int (*l
 
 void calc_force_LJ(double (*x)[dim],double (*f)[dim],double *a,double *U,int (*list)[Nn]){
   double dx,dy,dr2,dUr,w2,w6,w12,w2cut,w6cut,w12cut,aij,dUrcut,Ucut,dr;
-  ini_array(f);
+  ini_matrix(f);
   *U=0;
   for(int i=0;i<Np;i++){
     for(int j=1;j<=list[i][0];j++){
@@ -329,6 +328,18 @@ void auto_list_update(double *disp_max,double (*x)[dim],double (*x_update)[dim],
     *disp_max=0.0;
     count=0;
   }
+}
+
+void output(double (*x)[dim],double *a){
+  char filename[128];
+  ofstream file;
+  static int j=0; 
+  sprintf(filename,"coord_mc_T%.3f_%d.dat",temp,j);
+  file.open(filename); 
+  for(int i=0;i<Np;i++)
+    file <<x[i][0]<<" "<<x[i][1]<<" "<<a[i]<<endl;
+  file.close();
+  j++;
 }
 
 int main(){
