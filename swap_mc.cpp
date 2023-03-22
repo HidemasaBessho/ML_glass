@@ -228,7 +228,7 @@ void mc(double (*x)[dim],double *a,double *U,double temp0,int *count,double (*f)
   double dr[2];
   double U0;
   double p;
-  double *x,*y,*sigma;
+  double X,Y,sigma;
   int  i = (int)(Np*unif_rand(0,1.0));
   int j = (int)(Np*unif_rand(0,1.0));
   while(j=i){
@@ -236,9 +236,9 @@ void mc(double (*x)[dim],double *a,double *U,double temp0,int *count,double (*f)
   if(j!=i)
     break;
   }
-  *x = x[i][0];
-  *y = x[i][1];
-  *sigma = a[i];
+  X = x[i][0];
+  Y = x[i][1];
+  sigma = a[i];
   U0=*U;
   if(*trial_count<5){
     for(int k=0;k<dim;k++){
@@ -259,9 +259,9 @@ void mc(double (*x)[dim],double *a,double *U,double temp0,int *count,double (*f)
     for(int k=0;k<dim;k++){
       x[i][k] = x[j][k];
       a[i] = a[j];
-      x[j][0] = *x;
-      x[j][1] = *y;
-      a[j] = *sigma;
+      x[j][0] = X;
+      x[j][1] = Y;
+      a[j] = sigma;
     }
     calc_force_LJ(x,f,a,&(*U),list);
     p=unif_rand(0,1.0);
@@ -270,9 +270,9 @@ void mc(double (*x)[dim],double *a,double *U,double temp0,int *count,double (*f)
       for(int k=0;k<dim;k++){
 	x[j][k] = x[i][k];
 	a[i] = a[j];
-	x[i][0] = *x;
-        x[i][1] = *y;
-        a[i] = *sigma;
+	x[i][0] = X;
+        x[i][1] = Y;
+        a[i] = sigma;
       }
     *trial_count = 1;
     }
