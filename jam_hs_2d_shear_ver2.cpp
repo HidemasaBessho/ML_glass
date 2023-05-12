@@ -229,9 +229,9 @@ void calc_disp_max(double *disp_max,double *x,double *y,double *x_update,double 
     dx=x[i]-x_update[i];
     dy=y[i]-y_update[i];
     dy_temp=dy;
-	  dy -= L*floor((dy+0.5*L)/L);
-	  dx -= gamma*L*floor((dy_temp+0.5*L)/L);
-	  dx -= L*floor((dx+0.5*L)/L);
+    dy -= L*floor((dy+0.5*L)/L);
+    dx -= gamma*L*floor((dy_temp+0.5*L)/L);
+    dx -= L*floor((dx+0.5*L)/L);
     disp = dx*dx+dy*dy;
     if(disp > *disp_max)
       *disp_max =disp;
@@ -251,8 +251,8 @@ void auto_list_update(double *disp_max,double *x,double *y,double *x_update,doub
 }
 
 int FIRE(int (*list)[Nn],double *x,double *y,double *x_update,double *y_update,double *fx,double *fy,double *a,double *U,double *txy,double *disp_max){
-  double ux[Np],uy[Np],P,v_norm,f_tot;
-  double dt=dt0,A=0.1;
+  double ux[Np],uy[Np],P,u_norm,f_tot;
+  double dt=dt0,alpha=0.1;
   int count=0;
   
   // initialization
@@ -289,8 +289,8 @@ int FIRE(int (*list)[Nn],double *x,double *y,double *x_update,double *y_update,d
       P+=fx[i]*vx[i]+fy[i]*vy[i];
       
       // 3. velocity modification
-      ux[i] = (1.0-A)*ux[i]+A*fx[i]*v_norm/(f_norm+DBL_EPSILON);
-      uy[i] = (1.0-A)*uy[i]+A*fy[i]*v_norm/(f_norm+DBL_EPSILON);
+      ux[i] = (1.0-alpha)*ux[i]+A*fx[i]*u_norm/(f_norm+DBL_EPSILON);
+      uy[i] = (1.0-alpha)*uy[i]+A*fy[i]*u_norm/(f_norm+DBL_EPSILON);
     }
     
     // 4. converge criterion
@@ -304,7 +304,7 @@ int FIRE(int (*list)[Nn],double *x,double *y,double *x_update,double *y_update,d
       if(count>5){
         count=0;
         dt=min(1.1*dt,dt_max);
-        A*=0.99;
+        alpha*=0.99;
       }
     }
     else{
@@ -312,14 +312,42 @@ int FIRE(int (*list)[Nn],double *x,double *y,double *x_update,double *y_update,d
       ini_vec(ux);
       ini_vec(uy);
       dt*=0.5;
-      A=0.1;
+      alpha=0.1;
     }
   }
 }
 
+void output_coord(double *x,double *y,double *a,double gamma,double *x0,double *y0){
+  int i;
+  double dx,dy,dy_temp;
+  char filename[128];
+  ofstream file;
+  sprintf(filename,"coord_disp_gamma%.3f.csv",gamma);
+  file.open(filename,ios::app);
+  for(i=0;i<Np;i++){
+    dx=x[i]-x0[i]-gamma*y0[i];
+    dy=y[i]-y0[i];
+    dy_temp=dy;
+    dy -= L*floor((dy+0.5*L)/L);
+    dx -= gamma*L*floor((dy_temp+0.5*L)/L);
+    dx -= L*floor((dx+0.5*L)/L);
+    file << fixed << setprecision(10) << dx << "," << dy << "," <<  a[i] << endl;
+  }
+  file.close();
+}
+
+void output_shear(double gamma,double txy,double U){
+  char filename[128];
+  ofstream file;
+  sprintf(filename,"shear.csv");
+  file.open(filename,ios::app);
+  file << fixed << setprecision(10) << gamma << "," << txy << "," << U << endl;
+  file.close();
+}
+
 int main()
 {
-  double *x,*y,*vx,*vy,*fx,*fy,*a,*x_update,*y_update;
+  double *x,*y,*vx,*vy,*fx,*fy,*a,*x_update,*y_update,*x0,*y0;
   x = new double[Np];
   y = new double[Np];
   x_update = new double[Np];
@@ -329,6 +357,8 @@ int main()
   a = new double[Np];
   fx = new double[Np];
   fy = new double[Np];
+  x0 = new double[Np];
+  y0 = new double[Np];
   int (*list)[Nn] = new int[Np][Nn];
   double U,txy,gamma=0.0,disp_max=0.0,d_gamma=1.e-3;
   int M=(int)(L/(cut*sqrt(2.0)+skin));
@@ -357,11 +387,15 @@ int main()
   
   FIRE(list,x,y,x_update,y_update,fx,fy,a,&U,&txy,&disp_max);
   
+  copy_array(x,x0);
+  copy_array(y,y0);
   while(gamma<0.5){
     gamma += d_gamma;
     for(i=0;i<Np;i++)
       x[i] += d_gamma*y[i];
     FIRE(list,x,y,x_update,y_update,fx,fy,a,&U,&txy,&disp_max);
+    output_coord(x,y,a,gamma,x0,y0);
+    output_shear(gamma,txy,U);
   }
   
   delete[] x;
@@ -372,5 +406,7 @@ int main()
   delete[] fx;
   delete[] fy;
   delete[] list;
+  delete[] x0;
+  delete[] y0;
   return 0;
 }
